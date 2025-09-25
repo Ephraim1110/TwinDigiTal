@@ -6,6 +6,7 @@
 import { onMounted, ref } from "vue"
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 const container = ref<HTMLDivElement | null>(null)
@@ -48,8 +49,12 @@ onMounted(() => {
 	controls.maxDistance = 10000
 	controls.maxPolarAngle = Math.PI / 2
 
-	// Charger le modèle GLTF
+	// Charger le modèle GLTF avec DRACOLoader
+	const dracoLoader = new DRACOLoader()
+	dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/') // ou chemin local si besoin
+
 	const loader = new GLTFLoader()
+	loader.setDRACOLoader(dracoLoader)
 	loader.load("/models/scene.gltf", (gltf) => {
 		console.log("GLTF loaded", gltf)
 		scene.add(gltf.scene)
