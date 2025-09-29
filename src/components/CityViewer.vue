@@ -7,12 +7,14 @@ import { onMounted, ref } from "vue"
 import * as THREE from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 const container = ref<HTMLDivElement | null>(null)
 
 onMounted(() => {
 	if (!container.value) return
+
+	// Gestion des touches pour déplacement simultané (déclaré ici pour portée globale)
+	const keys: { [key: string]: boolean } = {}
 
 	const scene = new THREE.Scene()
 	scene.background = new THREE.Color(0xaaaaaa)
@@ -41,13 +43,7 @@ onMounted(() => {
 	container.value.appendChild(renderer.domElement)
 	console.log('Renderer ajouté au DOM', renderer.domElement)
 
-	// Contrôles caméra
-	const controls = new OrbitControls(camera, renderer.domElement)
-	controls.enableDamping = true
-	controls.screenSpacePanning = false
-	controls.minDistance = 1
-	controls.maxDistance = 10000
-	controls.maxPolarAngle = Math.PI / 2
+	// Plus de OrbitControls : gestion FPS clavier custom
 
 	// Charger le modèle GLTF avec DRACOLoader
 	const dracoLoader = new DRACOLoader()
@@ -63,7 +59,7 @@ onMounted(() => {
 		const axesHelper = new THREE.AxesHelper(500)
 		scene.add(axesHelper)
 
-		// Centrer la caméra et les contrôles sur le modèle
+		// Centrer la caméra sur le modèle (optionnel)
 		const box = new THREE.Box3().setFromObject(gltf.scene)
 		const size = box.getSize(new THREE.Vector3()).length()
 		const center = box.getCenter(new THREE.Vector3())
@@ -72,20 +68,65 @@ onMounted(() => {
 		const boxHelper = new THREE.Box3Helper(box, 0xff0000)
 		scene.add(boxHelper)
 
-		camera.position.set(center.x + size, center.y + size * 0.5, center.z + size)
-		camera.lookAt(center)
-		controls.target.copy(center)
-		controls.update()
+		camera.position.set(11.326652673104228, 1.5, 5.121259248977974)
+
+		// Gestion des touches pour déplacement FPS
+		window.addEventListener('keydown', (e) => {
+			keys[e.key] = true
+		})
+		window.addEventListener('keyup', (e) => {
+			keys[e.key] = false
+		})
 	})
 
-	// Animation loop
+	// Animation loop FPS
+	let yaw = 0 // angle horizontal
 	const animate = () => {
 		requestAnimationFrame(animate)
 		if (!renderer || !camera) {
 			console.error('Renderer ou caméra manquant !')
 			return
 		}
-		controls.update()
+
+	const step = 0.15
+		let moved = false
+
+		// Rotation Y (gauche/droite)
+		if (keys['ArrowLeft']) {
+			yaw += 0.05
+			moved = true
+		}
+		if (keys['ArrowRight']) {
+			yaw -= 0.05
+			moved = true
+		}
+		// Applique la rotation à la caméra
+		camera.rotation.set(0, yaw, 0)
+
+		// Calcul du vecteur direction (avant/arrière)
+		const direction = new THREE.Vector3(Math.sin(yaw), 0, Math.cos(yaw))
+		if (keys['ArrowUp']) {
+			camera.position.x += direction.x * step
+			camera.position.z += direction.z * step
+			moved = true
+		}
+		if (keys['ArrowDown']) {
+			camera.position.x -= direction.x * step
+			camera.position.z -= direction.z * step
+			moved = true
+		}
+		if (moved) {
+			camera.position.y = 1.5
+		}
+
+		// La caméra regarde toujours devant elle
+		const target = new THREE.Vector3(
+			camera.position.x + Math.sin(yaw),
+			1.5,
+			camera.position.z + Math.cos(yaw)
+		)
+		camera.lookAt(target)
+
 		renderer.render(scene, camera)
 	}
 	animate()
