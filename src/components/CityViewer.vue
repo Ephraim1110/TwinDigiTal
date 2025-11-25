@@ -4,19 +4,9 @@
 	<div class="lamp-ui">
 		<h4>Lamp UI</h4>
 		<div class="row">
-			<label>On</label>
-			<input type="checkbox" v-model="lampOn" @change="toggleLamp"/>
-		</div>
-		<div class="row">
-			<label>Intensity</label>
-			<input type="range" min="0" max="5" step="0.05" v-model.number="intensity" @input="updateIntensity"/>
-		</div>
-		<div class="row">
-			<label>Color</label>
-			<input type="color" v-model="color" @input="updateColor"/>
-		</div>
-		<div class="row">
-			<button @click="saveSettings">Save</button>
+			<button @click="toggleLamp" class="toggle-btn" :class="{ on: lampOn }">
+				{{ lampOn ? 'ON' : 'OFF' }}
+			</button>
 		</div>
 	</div>
 </template>
@@ -33,8 +23,8 @@ const container = ref<HTMLDivElement | null>(null)
 const lampLight = ref<THREE.PointLight | null>(null)
 const lampLightHelper = ref<THREE.PointLightHelper | null>(null)
 const lampOn = ref<boolean>(true)
-const intensity = ref<number>(1.8)
-const color = ref<string>('#fff6d5')
+const lightIntensity = 1.8
+const lightColor = '#fff6d5'
 
 function applyEmissiveToggle(root: THREE.Object3D, on: boolean) {
 	root.traverse((obj) => {
@@ -68,26 +58,13 @@ function applyEmissiveToggle(root: THREE.Object3D, on: boolean) {
 
 function setLampOnInternal(on: boolean) {
 	lampOn.value = on
-	if (lampLight.value) lampLight.value.intensity = on ? intensity.value : 0
+	if (lampLight.value) lampLight.value.intensity = on ? lightIntensity : 0
 	if (lampLightHelper.value) lampLightHelper.value.visible = on
 	if (lampLight.value && lampLight.value.parent) applyEmissiveToggle(lampLight.value.parent, on)
 }
 
 function toggleLamp() { 
 	setLampOnInternal(!lampOn.value) 
-}
-
-function updateIntensity() { 
-	if (lampLight.value) lampLight.value.intensity = lampOn.value ? intensity.value : 0 
-}
-
-function updateColor() { 
-	if (lampLight.value) lampLight.value.color = new THREE.Color(color.value) 
-}
-
-function saveSettings() { 
-	alert('Settings saved!')
-	console.log('Saved:', {on: lampOn.value, intensity: intensity.value, color: color.value})
 }
 
 onMounted(() => {
@@ -167,7 +144,7 @@ onMounted(() => {
 			})
 
 			// Create and attach point light
-			const pl = new THREE.PointLight(new THREE.Color(color.value), lampOn.value ? intensity.value : 0, 10)
+			const pl = new THREE.PointLight(new THREE.Color(lightColor), lampOn.value ? lightIntensity : 0, 10)
 			pl.position.set(0, 0.2, 0)
 			lamp.add(pl)
 			lampLight.value = pl
@@ -284,8 +261,21 @@ onMounted(() => {
 	flex: 1;
 }
 
-.lamp-ui button {
-	padding: 4px 12px;
+.lamp-ui .toggle-btn {
+	width: 100%;
+	padding: 10px 16px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 4px;
 	cursor: pointer;
+	background: #ccc;
+	color: #333;
+	transition: background 0.2s, color 0.2s;
+}
+
+.lamp-ui .toggle-btn.on {
+	background: #4caf50;
+	color: white;
 }
 </style>
