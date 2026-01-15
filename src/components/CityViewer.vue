@@ -4,8 +4,8 @@
 	<div class="lamp-ui">
 		<h4>Lamp UI</h4>
 		<div class="row">
-			<button @click="toggleLamp" class="toggle-btn" :class="{ on: lampOn }">
-				{{ lampOn ? 'ON' : 'OFF' }}
+			<button @click="lampStore.toggle" class="toggle-btn" :class="{ on: lampStore.lampOn }">
+				{{ lampStore.lampOn ? 'ON' : 'OFF' }}
 			</button>
 		</div>
 	</div>
@@ -16,8 +16,10 @@ import { onMounted, ref } from 'vue'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import { useLampStore } from '@/stores/lamp'
 
 const container = ref<HTMLDivElement | null>(null)
+const lampStore = useLampStore()
 
 // UI state and lamp references
 const lampLight = ref<THREE.PointLight | null>(null)
@@ -69,6 +71,9 @@ function toggleLamp() {
 
 onMounted(() => {
 	if (!container.value) return
+
+	// Connecter au serveur Socket.io
+	lampStore.connectSocket()
 
 	const scene = new THREE.Scene()
 	scene.background = new THREE.Color(0xaaaaaa)
@@ -158,6 +163,11 @@ onMounted(() => {
 
 			scene.add(lamp)
 			console.log('Lamp loaded at position:', lamp.position, lamp.rotation, lamp.scale)
+
+			// Synchroniser avec le store
+			lampStore.$subscribe((mutation, state) => {
+				setLampOnInternal(state.lampOn)
+			})
 		})
 	})
 
@@ -211,7 +221,9 @@ onMounted(() => {
 
 	// Toggle lamp with 'L' key
 	window.addEventListener('keydown', (e) => {
-		if (e.key.toLowerCase() === 'l') setLampOnInternal(!lampOn.value)
+		if (e.key.toLowerCase() === 'l') {
+			lampStore.toggle()
+		}
 	})
 })
 </script>
