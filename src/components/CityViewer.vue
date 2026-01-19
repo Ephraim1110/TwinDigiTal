@@ -57,6 +57,8 @@ const lampStore = useLampStore()
 // UI state and lamp references
 const lampLight = ref<THREE.PointLight | null>(null)
 const lampLightHelper = ref<THREE.PointLightHelper | null>(null)
+const allLampLights = ref<THREE.PointLight[]>([])
+const allLampHelpers = ref<THREE.PointLightHelper[]>([])
 const lampOn = ref<boolean>(true)
 const lightIntensity = 1.8
 const lightColor = '#fff6d5'
@@ -101,9 +103,21 @@ function applyEmissiveToggle(root: THREE.Object3D, on: boolean) {
 
 function setLampOnInternal(on: boolean) {
 	lampOn.value = on
-	if (lampLight.value) lampLight.value.intensity = on ? lightIntensity : 0
-	if (lampLightHelper.value) lampLightHelper.value.visible = on
-	if (lampLight.value && lampLight.value.parent) applyEmissiveToggle(lampLight.value.parent, on)
+	
+	// Mettre à jour l'intensité de toutes les lumières
+	allLampLights.value.forEach((light) => {
+		light.intensity = on ? lightIntensity : 0
+	})
+	
+	// Mettre à jour la visibilité de tous les helpers
+	allLampHelpers.value.forEach((helper) => {
+		helper.visible = on
+	})
+	
+	// Appliquer le toggle emissif à toutes les lampes
+	allLamps.value.forEach((lamp) => {
+		applyEmissiveToggle(lamp, on)
+	})
 }
 
 function toggleLamp() { 
@@ -265,7 +279,10 @@ onMounted(() => {
 				pl.position.set(0, 0.2, 0)
 				lamp.add(pl)
 
-				// Conserver la référence de la première lampe pour le toggle
+				// Ajouter à la liste de toutes les lumières
+				allLampLights.value.push(pl)
+
+				// Conserver la référence de la première lampe pour la rétro-compatibilité
 				if (index === 0) {
 					lampLight.value = pl
 				}
@@ -273,7 +290,10 @@ onMounted(() => {
 				const helper = new THREE.PointLightHelper(pl, 0.15)
 				lamp.add(helper)
 				
-				// Conserver le helper de la première lampe pour la visibilité
+				// Ajouter à la liste de tous les helpers
+				allLampHelpers.value.push(helper)
+				
+				// Conserver le helper de la première lampe pour la rétro-compatibilité
 				if (index === 0) {
 					lampLightHelper.value = helper
 				}
