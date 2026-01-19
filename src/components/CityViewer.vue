@@ -8,39 +8,6 @@
 				{{ lampStore.lampOn ? 'ON' : 'OFF' }}
 			</button>
 		</div>
-		
-		<div class="divider"></div>
-		<h5>Move All Lamps</h5>
-		
-		<div class="row">
-			<label>X:</label>
-			<input type="range" min="-10" max="10" step="0.1" v-model.number="lampOffsetX" @input="updateAllLampsPosition">
-			<span class="value">{{ lampOffsetX.toFixed(1) }}</span>
-		</div>
-		
-		<div class="row">
-			<label>Y:</label>
-			<input type="range" min="-3" max="5" step="0.1" v-model.number="lampOffsetY" @input="updateAllLampsPosition">
-			<span class="value">{{ lampOffsetY.toFixed(1) }}</span>
-		</div>
-		
-		<div class="row">
-			<label>Z:</label>
-			<input type="range" min="-10" max="10" step="0.1" v-model.number="lampOffsetZ" @input="updateAllLampsPosition">
-			<span class="value">{{ lampOffsetZ.toFixed(1) }}</span>
-		</div>
-
-		<div class="divider"></div>
-		<h5>Spacing</h5>
-		
-		<div class="row">
-			<label>Distance:</label>
-			<input type="range" min="0.5" max="2" step="0.1" v-model.number="lampSpacing" @input="updateAllLampsPosition">
-			<span class="value">{{ lampSpacing.toFixed(1) }}x</span>
-		</div>
-
-		<button @click="logFinalCoordinates" class="log-btn">📋 Log Coords</button>
-		<button @click="resetLampsPosition" class="reset-btn">Reset Position</button>
 	</div>
 </template>
 
