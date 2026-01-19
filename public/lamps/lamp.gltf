@@ -1,862 +1,126 @@
 {
-	"asset":{
-		"generator":"Khronos glTF Blender I/O v5.0.21",
-		"version":"2.0"
+	"asset": {
+		"generator": "SOLIDWORKSGLTF",
+		"version" : "2.0"
 	},
-	"extensionsUsed":[
-		"KHR_materials_specular",
-		"KHR_materials_ior",
-		"KHR_materials_sheen"
-	],
-	"scene":0,
-	"scenes":[
+"extensionsUsed": [ "KHR_lights_punctual", "Solidworks_custom_properties", "KHR_draco_mesh_compression"],
+"extensionsRequired": [ "KHR_draco_mesh_compression" ],
+	"scene" : 0,
+	"scenes": [
 		{
-			"name":"Scene",
-			"nodes":[
-				0,
-				1,
-				2,
-				3,
-				4
-			]
+			"name": "Défaut - <Défaut>_Etat d'affichage 1",
+			"nodes": [
+				0, 1]
 		}
 	],
-	"nodes":[
+	"nodes": [
 		{
-			"mesh":0,
-			"name":"Metal disc",
-			"translation":[
-				0.0011653135297819972,
-				2.071835994720459,
-				0.1386670172214508
+			"matrix": [
+				0.872247,					0.0282384,					0.48825,					0,
+				0.0503211,					0.987851,					-0.147031,					0,
+				-0.486471,					0.152816,					0.860229,					0,
+				-2.87259,					0.870613,					4.70297,					1
 			]
-		},
+			,"camera": 0
+			,"name": "current"		}
+,
 		{
-			"mesh":1,
-			"name":"Torsher",
-			"translation":[
-				0.0020783396903425455,
-				2.233240842819214,
-				0.2427292913198471
-			]
-		},
-		{
-			"mesh":2,
-			"name":"lampochka",
-			"translation":[
-				0.0011938662501052022,
-				2.228982925415039,
-				0.24298271536827087
-			]
-		},
-		{
-			"mesh":3,
-			"name":"Metal ragok",
-			"translation":[
-				0.0011140394490212202,
-				2.0947535037994385,
-				0.17840950191020966
-			]
-		},
-		{
-			"mesh":4,
-			"name":"Torsher Zoloto",
-			"translation":[
-				0.002078334102407098,
-				2.2320199012756348,
-				0.2427293062210083
-			]
-		}
+			"mesh": 0
+			,"name": "Panneau lumières.SLDPRT"		}
 	],
-	"animations":[
+	"cameras": [
 		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":0,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":0,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":0,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"Metal discAction",
-			"samplers":[
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":20
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":21
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":22
-				}
-			]
-		},
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":1,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":1,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":1,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"TorsherAction",
-			"samplers":[
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":23
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":21
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":22
-				}
-			]
-		},
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":2,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":2,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":2,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"lampochkaAction",
-			"samplers":[
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":24
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":21
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":22
-				}
-			]
-		},
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":3,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":3,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":3,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"Metal ragokAction",
-			"samplers":[
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":25
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":21
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":22
-				}
-			]
-		},
-		{
-			"channels":[
-				{
-					"sampler":0,
-					"target":{
-						"node":4,
-						"path":"translation"
-					}
-				},
-				{
-					"sampler":1,
-					"target":{
-						"node":4,
-						"path":"rotation"
-					}
-				},
-				{
-					"sampler":2,
-					"target":{
-						"node":4,
-						"path":"scale"
-					}
-				}
-			],
-			"name":"Torsher ZolotoAction",
-			"samplers":[
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":26
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":21
-				},
-				{
-					"input":19,
-					"interpolation":"LINEAR",
-					"output":22
-				}
-			]
-		}
-	],
-	"materials":[
-		{
-			"doubleSided":true,
-			"name":"Metal disc",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					1,
-					0.8254663944244385,
-					0.7200791239738464,
-					1
-				],
-				"roughnessFactor":0
+			"type": "orthographic",
+			"orthographic" : {
+				"xmag": 1,
+				"ymag" : 1,
+				"zfar" : 100,
+				"znear" : 0.01
 			}
-		},
+		}
+	],
+	"meshes" : [
 		{
-			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularFactor":0.20000000298023224
-				},
-				"KHR_materials_sheen":{
-					"sheenColorFactor":[
-						1.0,
-						1.0,
-						1.0
-					],
-					"sheenRoughnessFactor":0.5
-				},
-				"KHR_materials_ior":{
-					"ior":1.4500000476837158
+			"primitives" : [
+				{
+					"attributes" : {
+					"POSITION" : 1,
+					"NORMAL" : 2,
+					"TEXCOORD_0" : 3
+					},
+					"indices" : 0,
+					"mode": 4,
+					"material" : 1
+					,"extensions": {
+					"KHR_draco_mesh_compression": {
+					"bufferView": 0,
+					"attributes" : {
+					"POSITION": 0,
+					"NORMAL" : 1,
+					"TEXCOORD_0" : 2
+					}
+					}
+					}
+				}
+			]
+		}
+	],
+	"accessors" : [
+			{
+				"componentType" : 5123
+				,"count" : 180
+				,"type" : "SCALAR"
+			},
+			{
+				"componentType" : 5126
+				,"count" : 96
+				,"type" : "VEC3"
+				,"min" : [-2.84999996e-01, 0.00000000e+00, -2.84999996e-01]
+				,"max" : [2.84999996e-01, 2.99999993e-02, 2.84999996e-01]
+			},
+			{
+				"componentType" : 5126
+				,"count" : 96
+				,"type" : "VEC3"
+			},
+			{
+				"componentType" : 5126
+				,"count" : 96
+				,"type" : "VEC2"
+			}
+	],
+	"materials": [
+			{
+				"pbrMetallicRoughness": {
+					"baseColorFactor": [
+						0.498039, 0.498039, 0.498039, 1
+					]
+					,"metallicFactor": 0
+					,"roughnessFactor": 1
 				}
 			},
-			"name":"Torsher",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0,
-					0,
-					0,
-					1
-				],
-				"metallicFactor":0,
-				"roughnessFactor":0.6000000238418579
-			}
-		},
-		{
-			"doubleSided":true,
-			"emissiveFactor":[
-				1,
-				1,
-				1
-			],
-			"name":"lampochki.002",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0,
-					0,
-					0,
-					1
-				]
-			}
-		},
-		{
-			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularFactor":0.019999999552965164
-				},
-				"KHR_materials_ior":{
-					"ior":1.4500000476837158
+			{
+				"name": "color"
+				,"pbrMetallicRoughness": {
+					"baseColorFactor": [
+						1, 1, 1, 1
+					]
+					,"metallicFactor": 0
+					,"roughnessFactor": 0.17
 				}
-			},
-			"name":"laompochka plastic.002",
-			"pbrMetallicRoughness":{
-				"baseColorFactor":[
-					0.4370751976966858,
-					0.338518887758255,
-					0.19043946266174316,
-					1
-				],
-				"metallicFactor":0,
-				"roughnessFactor":0.5
 			}
-		},
-		{
-			"doubleSided":true,
-			"name":"Metal ragok",
-			"pbrMetallicRoughness":{
-				"roughnessFactor":0
-			}
-		},
-		{
-			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularFactor":0.8500000238418579
-				},
-				"KHR_materials_ior":{
-					"ior":1.4500000476837158
-				}
-			},
-			"name":"Torsher Zoloto",
-			"pbrMetallicRoughness":{
-				"roughnessFactor":0
-			}
-		}
 	],
-	"meshes":[
-		{
-			"name":"Cube.006",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":0,
-						"NORMAL":1,
-						"TEXCOORD_0":2
-					},
-					"indices":3,
-					"material":0
-				}
-			]
-		},
-		{
-			"name":"Cylinder.015",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":4,
-						"NORMAL":5
-					},
-					"indices":6,
-					"material":1
-				}
-			]
-		},
-		{
-			"name":"Cylinder.013",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":7,
-						"NORMAL":8
-					},
-					"indices":9,
-					"material":2
-				},
-				{
-					"attributes":{
-						"POSITION":10,
-						"NORMAL":11
-					},
-					"indices":12,
-					"material":3
-				}
-			]
-		},
-		{
-			"name":"Cube.005",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":13,
-						"NORMAL":14
-					},
-					"indices":15,
-					"material":4
-				}
-			]
-		},
-		{
-			"name":"Cylinder.011",
-			"primitives":[
-				{
-					"attributes":{
-						"POSITION":16,
-						"NORMAL":17
-					},
-					"indices":18,
-					"material":5
-				}
-			]
-		}
+	"bufferViews" : [
+			{
+				"buffer": 0
+				,"byteOffset" : 0
+				,"byteLength" : 492
+			}
 	],
-	"accessors":[
-		{
-			"bufferView":0,
-			"componentType":5126,
-			"count":599,
-			"max":[
-				0.047244273126125336,
-				0.047240253537893295,
-				0.00421358086168766
-			],
-			"min":[
-				-0.047244273126125336,
-				-0.047240253537893295,
-				-0.00421358086168766
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":1,
-			"componentType":5126,
-			"count":599,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":2,
-			"componentType":5126,
-			"count":599,
-			"type":"VEC2"
-		},
-		{
-			"bufferView":3,
-			"componentType":5123,
-			"count":3288,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":4,
-			"componentType":5126,
-			"count":480,
-			"max":[
-				0.09828424453735352,
-				0.07046970725059509,
-				0.09828424453735352
-			],
-			"min":[
-				-0.09828424453735352,
-				-0.07046970725059509,
-				-0.09828422963619232
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":5,
-			"componentType":5126,
-			"count":480,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":6,
-			"componentType":5123,
-			"count":2688,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":7,
-			"componentType":5126,
-			"count":153,
-			"max":[
-				0.02127007208764553,
-				0.021022377535700798,
-				0.021270086988806725
-			],
-			"min":[
-				-0.02127007208764553,
-				-0.012478576973080635,
-				-0.021270086988806725
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":8,
-			"componentType":5126,
-			"count":153,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":9,
-			"componentType":5123,
-			"count":864,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":10,
-			"componentType":5126,
-			"count":80,
-			"max":[
-				0.014763634651899338,
-				-0.01247856579720974,
-				0.01476361695677042
-			],
-			"min":[
-				-0.014763632789254189,
-				-0.021022377535700798,
-				-0.014763646759092808
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":11,
-			"componentType":5126,
-			"count":80,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":12,
-			"componentType":5123,
-			"count":384,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":13,
-			"componentType":5126,
-			"count":456,
-			"max":[
-				0.04729410633444786,
-				0.07015778124332428,
-				0.06990347802639008
-			],
-			"min":[
-				-0.04719100892543793,
-				-0.07015779614448547,
-				-0.06987234205007553
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":14,
-			"componentType":5126,
-			"count":456,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":15,
-			"componentType":5123,
-			"count":2430,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":16,
-			"componentType":5126,
-			"count":561,
-			"max":[
-				0.09619496017694473,
-				0.07103229314088821,
-				0.09619495272636414
-			],
-			"min":[
-				-0.09619496017694473,
-				-0.07103229314088821,
-				-0.09619495272636414
-			],
-			"type":"VEC3"
-		},
-		{
-			"bufferView":17,
-			"componentType":5126,
-			"count":561,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":18,
-			"componentType":5123,
-			"count":3072,
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":19,
-			"componentType":5126,
-			"count":1,
-			"max":[
-				0.20833333333333334
-			],
-			"min":[
-				0.20833333333333334
-			],
-			"type":"SCALAR"
-		},
-		{
-			"bufferView":20,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":21,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC4"
-		},
-		{
-			"bufferView":22,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":23,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":24,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":25,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		},
-		{
-			"bufferView":26,
-			"componentType":5126,
-			"count":1,
-			"type":"VEC3"
-		}
-	],
-	"bufferViews":[
-		{
-			"buffer":0,
-			"byteLength":7188,
-			"byteOffset":0,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":7188,
-			"byteOffset":7188,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":4792,
-			"byteOffset":14376,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":6576,
-			"byteOffset":19168,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":5760,
-			"byteOffset":25744,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":5760,
-			"byteOffset":31504,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":5376,
-			"byteOffset":37264,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":1836,
-			"byteOffset":42640,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":1836,
-			"byteOffset":44476,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":1728,
-			"byteOffset":46312,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":960,
-			"byteOffset":48040,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":960,
-			"byteOffset":49000,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":768,
-			"byteOffset":49960,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":5472,
-			"byteOffset":50728,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":5472,
-			"byteOffset":56200,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":4860,
-			"byteOffset":61672,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":6732,
-			"byteOffset":66532,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":6732,
-			"byteOffset":73264,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":6144,
-			"byteOffset":79996,
-			"target":34963
-		},
-		{
-			"buffer":0,
-			"byteLength":4,
-			"byteOffset":86140
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":86144
-		},
-		{
-			"buffer":0,
-			"byteLength":16,
-			"byteOffset":86156
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":86172
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":86184
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":86196
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":86208
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":86220
-		}
-	],
-	"buffers":[
-		{
-			"byteLength":86232,
-			"uri":"CONTE%20AP1.bin"
-		}
+	"buffers" : [
+			{
+				"byteLength": 492
+				,"uri" : "data.bin"
+			}
 	]
 }
