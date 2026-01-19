@@ -91,53 +91,8 @@ function toggleLamp() {
 	setLampOnInternal(!lampOn.value) 
 }
 
-function updateAllLampsPosition() {
-	allLamps.value.forEach((lamp) => {
-		const basePos = lampBasePositions.value.get(lamp)
-		if (basePos) {
-			lamp.position.set(
-				basePos.x * lampSpacing.value + lampOffsetX.value,
-				basePos.y + lampOffsetY.value,
-				basePos.z * lampSpacing.value + lampOffsetZ.value
-			)
-		}
-	})
-}
 
-function resetLampsPosition() {
-	lampOffsetX.value = 0
-	lampOffsetY.value = 0
-	lampOffsetZ.value = 0
-	lampSpacing.value = 1
-	updateAllLampsPosition()
-}
 
-function logFinalCoordinates() {
-	console.log('\n========== COORDONNÉES FINALES DES LAMPES ==========\n')
-	
-	const lampCoords: Array<{index: number, x: number, y: number, z: number}> = []
-	
-	allLamps.value.forEach((lamp, index) => {
-		const pos = lamp.position
-		lampCoords.push({
-			index: index + 1,
-			x: parseFloat(pos.x.toFixed(3)),
-			y: parseFloat(pos.y.toFixed(3)),
-			z: parseFloat(pos.z.toFixed(3))
-		})
-		console.log(`Lampe ${index + 1}: { x: ${pos.x.toFixed(3)}, y: ${pos.y.toFixed(3)}, z: ${pos.z.toFixed(3)} }`)
-	})
-	
-	// Afficher aussi en format tableau
-	console.log('\n--- Format tableau ---')
-	console.log(lampCoords)
-	
-	// Afficher en format JSON pour copier facilement
-	console.log('\n--- Format JSON (copier-coller) ---')
-	console.log(JSON.stringify(lampCoords, null, 2))
-	
-	console.log('\n====================================================\n')
-}
 
 onMounted(() => {
 	if (!container.value) return
