@@ -22,14 +22,14 @@ export const useLampStore = defineStore('lamp', () => {
   }
 
   // Toggle la lampe
-  function toggle() {
-    lampOn.value = !lampOn.value
-    if (socket) {
-      // On envoie explicitement le powerState
-      socket.emit('setLampState', { powerState: lampOn.value ? 'on' : 'off' })
-      console.log('ENVOYE setLampState:', lampOn.value ? 'on' : 'off')
+    function toggle() {
+      lampOn.value = !lampOn.value;
+      if (socket) {
+        const state = lampOn.value ? "on" : "off";
+        socket.emit("setLampState", { powerState: state });
+      }
     }
-  }
+
 
   return { lampOn, connectSocket, toggle }
 })
