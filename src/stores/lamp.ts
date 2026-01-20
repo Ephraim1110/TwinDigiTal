@@ -24,12 +24,14 @@ export const useLampStore = defineStore('lamp', () => {
   }
 
   // Changer l'état de la lampe
-  function setLamp(on: boolean) {
-    lampOn.value = on
-    if (socket) {
-      socket.emit('setLampState', { powerState: on ? 'on' : 'off' })
+    function setLamp(on: boolean) {
+      lampOn.value = on
+      console.log("⬆️ Envoi setLampState au serveur :", on ? "on" : "off")
+      if (socket) {
+        socket.emit('setLampState', { powerState: on ? 'on' : 'off' })
+      }
     }
-  }
+
 
   // Fonction toggle pratique côté UI
   function toggle() {
