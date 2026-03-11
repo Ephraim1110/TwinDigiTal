@@ -7,7 +7,7 @@ export const useSocketStore = defineStore('socket', () => {
   const isConnected = ref(false)
 
   // Connecter au serveur Socket.IO
-  function connect(serverUrl: string = 'http://localhost:5554') {
+  function connect(serverUrl: string = 'http://0.0.0.0:5554') {
     if (socket.value?.connected) {
       console.log('✅ Déjà connecté à Socket.IO')
       return
