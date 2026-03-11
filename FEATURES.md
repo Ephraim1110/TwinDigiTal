@@ -20,11 +20,11 @@ Le panneau HUD (en haut à gauche) affiche maintenant:
 - **💡 État des lampes** : Affiche si les lampes sont ON ou OFF
 - **📋 Liste des utilisateurs distants** : Affiche tous les autres utilisateurs avec leur couleur
 
-### 4. **Synchronisation Multi-Utilisateurs** 🔄
-- **Basée sur localStorage** : Les positions sont partagées via les événements de stockage (fonctionne sur les onglets du même domaine)
-- **Mise à jour active** : Chaque utilisateur envoie sa position toutes les 100ms
-- **Écoute passive** : Mise à jour automatique quand d'autres utilisateurs bougent
-- **Cleanup automatique** : Les utilisateurs inactifs depuis 30s sont supprimés
+### 4. **Synchronisation Multi-Utilisateurs via Socket.IO** 🔄
+- **Basée sur Socket.IO** : Communication bidirectionnelle en temps réel avec le serveur Node.js
+- **Mise à jour active** : Chaque utilisateur envoie sa position en continu
+- **Broadcast automatique** : Le serveur diffuse les positions à tous les clients connectés
+- **Reconnexion automatique** : Gestion des déconnexions avec reconnexion automatique
 
 ### 5. **Contrôles Améliorés** ⌨️
 - **Flèches directionnelles** : Naviguez avec les flèches
@@ -33,12 +33,18 @@ Le panneau HUD (en haut à gauche) affiche maintenant:
 
 ## 📦 Structure du Projet
 
+### Nouveau Store: `/src/stores/socket.ts`
+Gère:
+- La connexion au serveur Socket.IO
+- L'émission des événements utilisateur (join, position)
+- L'écoute des événements du serveur
+
 ### Nouveau Store: `/src/stores/users.ts`
 Gère:
 - La création et gestion des utilisateurs
 - Les positions et couleurs
-- La synchronisation via localStorage
-- Le cleanup des utilisateurs inactifs
+- La synchronisation via Socket.IO
+- L'ajout/suppression d'avatars distants
 
 ### Composant Updateté: `/src/components/CityViewer.vue`
 Améliorations:
@@ -50,17 +56,11 @@ Améliorations:
 
 ## 🎮 Comment Tester
 
-### Mode Simple (Même Navigateur)
-1. Ouvrir le site dans deux onglets différents
-2. Les utilisateurs vont automatiquement se découvrir via localStorage
-3. Voir les avatars apparaître et les positions se synchroniser
-
-### Mode Réseau (Plusieurs Appareils)
-Pour utiliser avec plusieurs appareils/utilisateurs:
-```bash
-# Remplacer localStorage par Socket.io ou WebSocket
-# Voir l'implémentation dans useUsersStore()
-```
+### Mode Réseau avec Socket.IO
+1. Démarrer le serveur Node.js (voir serveur Socket.IO)
+2. Lancer l'appli Vue sur http://localhost:5173
+3. Connecter plusieurs clients au serveur
+4. Les avatars apparaissent et les positions se synchronisent en temps réel
 
 ## 🔧 Configuration
 
