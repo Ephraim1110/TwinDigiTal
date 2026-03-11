@@ -34,7 +34,7 @@ export const useUsersStore = defineStore('users', () => {
         clearInterval(checkConnection)
 
         localUserId.value = socketStore.socket.id
-        const position = { x: 11.3, y: 1.5, z: 5.1 }
+        const position = { x: 11.3, y: 1.0, z: 5.1 }
         const userColor = generateRandomColor()
         
         // Créer l'utilisateur local
